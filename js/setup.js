@@ -3,7 +3,7 @@
 const option = {
 	targetSelector: '#scene',
 	width: 1920, height:1080,
-	backgroundColor: 0xFFFFFF
+	backgroundColor: 0x000000
 }
 
 const renderer = new THREE.WebGLRenderer(
@@ -32,7 +32,7 @@ camera.position.z = 9;
 
 
 const light = new THREE.HemisphereLight(
-	0xFFFFFF,0x000000,2
+	0xFFFFFF,0x000000,1
 );
 
 light.position.y = 3
@@ -44,6 +44,10 @@ const x3 = new THREEx3(
 		OrbitControls: THREE.OrbitControls,
 		camera,
 		renderer,scene
+	},
+	{
+		grid: {visible: false},
+		axes: {visible: false}
 	}
 )
 x3.add(camera)

@@ -1,3 +1,4 @@
+//import * as THREE from 'three'
 
 const path = new THREE.Shape();
 
@@ -22,7 +23,7 @@ const geometry = new THREE.ExtrudeBufferGeometry(
 );
 
 const material = new THREE.MeshLambertMaterial(
-    {   color: 0xFFF0F0,
+    {   color: 0xFF0000,
         side: THREE.DoubleSide
    }  
 );
