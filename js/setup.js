@@ -6,31 +6,36 @@ const option = {
 	backgroundColor: 0xFFFFFF
 }
 
-
-
 const renderer = new THREE.WebGLRenderer(
 	{antialias: true}
 );
 
-renderer.setPixelRatio(window.devicePixelRatio)
-renderer.setSize( option.width, window.innerHeight );
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize( option.width, option.height);
 
 document.querySelector(
 	option.targetSelector
-	).appendChild(renderer.domElement)
+	).appendChild(renderer.domElement);
 const scene = new THREE.Scene();
-scene.backgroundColor = new THREE.Color(option.backgroundColor);
+
+scene.background = new THREE.Color(option.backgroundColor);
 
 const camera = new THREE.PerspectiveCamera(
 	50, option.width/option.height
 );
 
-camera.position.z = 5;
+
+camera.position.x = 9;
+camera.position.y = 9;
+camera.position.z = 9;
+
 
 
 const light = new THREE.HemisphereLight(
 	0xFFFFFF,0x000000,2
 );
+
+light.position.y = 3
 
 scene.add(light)
 const x3 = new THREEx3(
