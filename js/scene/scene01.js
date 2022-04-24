@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+//import * as THREE from 'three'
 ////light define
 const material = new THREE.MeshLambertMaterial(
          { color: 0x00ff00, 
