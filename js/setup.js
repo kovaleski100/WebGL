@@ -31,13 +31,13 @@ camera.position.z = 9;
 
 
 
-const light = new THREE.HemisphereLight(
-	0xFFFFFF,0x000000,1
-);
+// const light = new THREE.HemisphereLight(
+// 	0xFFFFFF,0x000000,1
+// );
 
-light.position.y = 3
+// light.position.y = 3
 
-scene.add(light)
+// scene.add(light)
 const x3 = new THREEx3(
 	{
 		THREE,
@@ -50,6 +50,10 @@ const x3 = new THREEx3(
 		axes: {visible: false}
 	}
 )
+
+renderer.shadowMap.enabled = true
+renderer.shadowMap.type = THREE.PCFSoftShadowMap
+
 x3.add(camera)
-x3.add(light)
+//x3.add(light)
 x3.add(scene)
