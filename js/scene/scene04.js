@@ -32,51 +32,57 @@ scene.add(cube)
 const shadowLight = new THREE.DirectionalLight(
     0xFFFFFF, 1
 )
+shadowLight.position.x = 0
 shadowLight.position.y = 4
+shadowLight.position.z = 0
 
 shadowLight.castShadow = true
 scene.add(shadowLight)
 x3.add(cube)
 x3.add(shadowLight)
 
+var count = 0
+
 renderer.setAnimationLoop(() => {
 
-    var x = shadowLight.position.x    
-    var y = shadowLight.position.y
-    var z = shadowLight.position.z
+    var x = shadowLight.position.x*shadowLight.position.x - 0
+    var y = shadowLight.position.y*shadowLight.position.y - 0
+    var z = shadowLight.position.z*shadowLight.position.z - 0
 
-    var yaw = 0.02;
+    x = Math.sqrt(x)
+    y = Math.sqrt(y)
+    z = Math.sqrt(z)
+
+    if(count>600)
+    {
+        console.log(x,y,z)
+    }
+
+    var yaw = 0.01;
     var pitch = 0;
     var roll = 0;
 
-    var cosa = Math.cos(yaw);
-    var sina = Math.sin(yaw);
-
-    var cosb = Math.cos(pitch);
-    var sinb = Math.sin(pitch);
-
-    var cosc = Math.cos(roll);
-    var sinc = Math.sin(roll);
-
-    var Axx = cosa*cosb;
-    var Axy = cosa*sinb*sinc - sina*cosc;
-    var Axz = cosa*sinb*cosc + sina*sinc;
-
-    var Ayx = sina*cosb;
-    var Ayy = sina*sinb*sinc + cosa*cosc;
-    var Ayz = sina*sinb*cosc - cosa*sinc;
-
-    var Azx = -sinb;
-    var Azy = cosb*sinc;
-    var Azz = cosb*cosc;
-
-    x = Axx*x + Axy*y + Axz*z;
-    y = Ayx*x + Ayy*y + Ayz*z;
-    z = Azx*x + Azy*y + Azz*z;
+    const quaternion = new THREE.Quaternion();
+    quaternion.setFromAxisAngle( new THREE.Vector3( 0, 1, 0 ), Math.PI / 60 );
     
-    shadowLight.position.x = x
-    shadowLight.position.y = y
-    shadowLight.position.z = z
+//    console.log(quaternion)
+
+    const vector = new THREE.Vector3( x, y, z );
+    vector.applyQuaternion( quaternion );    
+    
+    shadowLight.position.x = vector.x
+    shadowLight.position.y = vector.y
+    shadowLight.position.z = vector.z
+
+    if(count > 600)
+    {
+        console.log(vector)
+        count =0
+    }
+
+    count++
+    //alert("")
+    //shadowLight.position.z = z
 
 
     cube.rotateY(0.01)
