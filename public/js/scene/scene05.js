@@ -1,11 +1,16 @@
-const sphere = new THREE.Mesh(
-    new THREE.SphereBufferGeometry(0.5,60,60),
-    new THREE.MeshPhongMaterial(
-        {
-            color: 0xFFFFFF
-        }
-    )
-);
+function newSphere()
+{
+    return new THREE.Mesh(
+        new THREE.SphereBufferGeometry(0.5,60,60),
+        new THREE.MeshPhysicalMaterial(
+            {
+                color: 0xFFFFFF
+            }
+        )
+    );
+}
+
+const sphere = newSphere()
 
 sphere.position.x = 1
 sphere.position.y = 1
@@ -14,9 +19,9 @@ scene.add(sphere)
 
 const floor = new THREE.Mesh(
     new THREE.PlaneBufferGeometry(10,10),
-    new THREE.MeshPhongMaterial(
+    new THREE.MeshPhysicalMaterial(
         {
-            color: 0xFFFFFF,
+            color: 0xFF0000,
             side: THREE.DoubleSide
         }
     )
@@ -27,7 +32,7 @@ floor.receiveShadow = true
 scene.add(floor)
 
 const shadowLight = new THREE.PointLight(
-    0xFFFFFF, 0.75
+    0xFFFFFF, 10
 )
 
 shadowLight.position.y = 4
@@ -36,8 +41,8 @@ shadowLight.target = sphere
 
 
 scene.add(shadowLight)
-x3.add(sphere)
-x3.add(floor)
+x3.add(sphere, {label : 'Sphere'})
+x3.add(floor, {label : 'floar'})
 x3.add(shadowLight)
 
 renderer.setAnimationLoop(() => {
