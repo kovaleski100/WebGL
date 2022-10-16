@@ -43,6 +43,9 @@ x3.add(shadowLight)
 
 var count = 0
 
+const quaternion = new THREE.Quaternion();
+quaternion.setFromAxisAngle( new THREE.Vector3( 1, 0, 0), Math.PI / 360 );
+
 renderer.setAnimationLoop(() => {
 
     var x = shadowLight.position.x*shadowLight.position.x - 0
@@ -57,13 +60,6 @@ renderer.setAnimationLoop(() => {
     {
         console.log(x,y,z)
     }
-
-    var yaw = 0.01;
-    var pitch = 0;
-    var roll = 0;
-
-    const quaternion = new THREE.Quaternion();
-    quaternion.setFromAxisAngle( new THREE.Vector3( 0, 1, 0 ), Math.PI / 60 );
     
 //    console.log(quaternion)
 
