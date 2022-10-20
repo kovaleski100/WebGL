@@ -54,6 +54,6 @@ const x3 = new THREEx3(
 renderer.shadowMap.enabled = true
 renderer.shadowMap.type = THREE.PCFSoftShadowMap
 renderer.physicallyCorrectLights = true
+renderer.toneMapping = THREE.CineonToneMapping;
 x3.add(camera)
-//x3.add(light)
 x3.add(scene)
